@@ -34,7 +34,7 @@ class AppSidebar extends Component {
                             <Nav className="ml-auto" navbar>
                                 <NavItem>
                                     <NavLink href="/">
-                                        Reports
+                                        Paper Work
                                     </NavLink>
                                 </NavItem>
                             </Nav>
