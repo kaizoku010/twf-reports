@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {
-
     Collapse,
     Navbar,
     NavbarToggler,
@@ -10,6 +9,10 @@ import {
     NavLink,
     Container
 } from 'reactstrap';
+
+import { Link } from "react-router-dom";
+import {LinkContainer} from 'react-router-bootstrap'
+
 
 class AppSidebar extends Component {
 
@@ -33,9 +36,9 @@ class AppSidebar extends Component {
                         <Collapse isOpen={this.state.isOpen} navbar >
                             <Nav className="ml-auto" navbar>
                                 <NavItem>
-                                    <NavLink href="/">
+                                    <LinkContainer  to="/low_dash">
                                         PaperWork
-                                    </NavLink>
+                                    </LinkContainer >
                                 </NavItem>
                             </Nav>
                         </Collapse>
