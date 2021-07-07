@@ -1,10 +1,8 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Navbar from "./componets/Appsidebar"
-import ReportList from "./componets/Entrylist";
 import { Provider } from "react-redux";
 import store from "./store";
-import AddReportBtn from "./componets/ReportModel";
 import { Container } from "reactstrap";
 import {
   BrowserRouter as Router,
@@ -12,28 +10,33 @@ import {
   Route,
   Link
 } from "react-router-dom";
-
+import Dashboard from "./componets/dashboard__";
 
 function App() {
   return (
-    <Router>
-    <Provider store ={store}>
-      <div className="App">
+
+    <Provider store={store}>
+      <Router>
+        <div className="App">
         {/* /header */}
-        <Navbar />
-        {/* body */}
-
-        <Container className="container">
-          {/* adding contenr btn */}
-          <AddReportBtn />
-          {/* main content */}
-        <ReportList />
+          <Navbar />
+          
+          <Switch>
+            <Container className="container">
+              
+              <Route path="/">
+                <Dashboard/>
+          </Route>
+    
+    
         </Container>
-
+        </Switch>
         
       </div>
-      </Provider>
+     
       </Router>
+      </Provider>
+ 
   );
 }
 

@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
-import { Container, ListGroup, ListGroupItem, Button } from "reactstrap";
+import { Container, ListGroup, ListGroupItem, Button, Badge } from "reactstrap";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
+import "../componets/dashboard.css";
 //import { id } from 'uuid';
+import SmartText from "../componets/SmartText";
 import { v1 as id } from "uuid";
 import { connect } from "react-redux";
 import { getItems, deleteItem } from "../actions/itemActions";
@@ -14,28 +16,26 @@ class EntryList extends Component {
 
     onDeleteClick = (_id) => {
         this.props.deleteItem(_id);
-}
-
-
+    }
+    
     render() {
         const { items } = this.props.item;
         return (
-            <Container>
+            <Container className="list__holder">
               <ListGroup>
                     <TransitionGroup className="report-list">
-                        {items.map(({ _id, name }) => (
+                        {items.map(({ title, _id, name, author }) => (
                             <CSSTransition key={_id}
-                                timeout={500}
+                                timeout={300}
                                 classNames="fade">
                                 <ListGroupItem>
-                                    <Button
-                                        className="remove-btn"
-                                        color="danger"
-                                        size="sm"
-                                        onClick={this.onDeleteClick.bind(this, _id)}>
-                                        &times;
-                                    </Button>
-                                    {name}
+                                <h4>{ title }</h4> 
+                                    <SmartText text={name}/>
+                                    <div className="author__holder">
+                                        <p className="author">{author}</p>
+                                        <p className="comment">Comment</p>
+                                        <p className="deleteBtn" onClick={this.onDeleteClick.bind(this, _id)}>Delete</p>
+                                    </div>
                                 </ListGroupItem>
                             </CSSTransition>
                         ))}
@@ -43,9 +43,7 @@ class EntryList extends Component {
                 </ListGroup>
             </Container>
         );
-
     }
-
 }
 
 EntryList.propTypes = {

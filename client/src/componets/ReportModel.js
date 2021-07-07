@@ -17,7 +17,9 @@ class ReportModel extends Component{
 
     state = {
         modal: false,
-        name: ""
+        name: "",
+        title: "",
+        author:""
     }
 
     toggle = () => {
@@ -30,10 +32,22 @@ class ReportModel extends Component{
         this.setState({ [e.target.name]: e.target.value });
     }
 
+    onChangeTitle = (e) => {
+        this.setState({ [e.target.title]: e.target.value });
+    }
+
+    onChangeAuthor = (e) => {
+        this.setState({ [e.target.author]: e.target.value });
+    }
+
+
     onSubmit = e => {
         e.preventDefault();
         const newReport = {
-            name:this.state.name
+            name: this.state.name,
+            title: this.state.title,
+            author: this.state.author
+
         }
 
         this.props.addItem(newReport);
@@ -58,9 +72,23 @@ class ReportModel extends Component{
                     <ModalBody>
                     <Form onSubmit={this.onSubmit}>
                     <FormGroup>
-                    <Label for="report"></Label>            
+                                <Label for="report"></Label>
+                                <input type="text"
+                                    title="title"
+                                    class="form-control"
+                                    placeholder="Username" aria-label="Username"
+                                    aria-describedby="basic-addon1"
+                                    onChange={this.onChangeTitle} />
+                                
+                                <input type="text"
+                                    author="author"
+                                    class="form-control"
+                                    placeholder="Username" aria-label="Username"
+                                    aria-describedby="basic-addon1"
+                                    onChange={this.onChangeAuthor}/>
+            
                                 <input
-                                    type="text"
+                                    type="textarea"
                                     name="name"
                                     id="item"
                                     placeholder="Start here!"

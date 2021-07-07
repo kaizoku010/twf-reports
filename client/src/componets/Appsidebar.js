@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import "../componets/Nav.css";
 import {
     Collapse,
     Navbar,
@@ -11,8 +12,6 @@ import {
 } from 'reactstrap';
 
 import { Link } from "react-router-dom";
-import {LinkContainer} from 'react-router-bootstrap'
-
 
 class AppSidebar extends Component {
 
@@ -29,16 +28,16 @@ class AppSidebar extends Component {
     render() {
         return (
             <div>
-                <Navbar color="dark" dark expand="sm" className="mb-5">
+                <Navbar color="dark" dark expand="sm" className="nav">
                     <Container>
-                        <NavbarBrand href="/">The Wellbeing Foundation</NavbarBrand>
+                        <NavbarBrand href="/">TheWellbeingFoundation</NavbarBrand>
                         <NavbarToggler onClick={this.toggle} />
                         <Collapse isOpen={this.state.isOpen} navbar >
                             <Nav className="ml-auto" navbar>
                                 <NavItem>
-                                    <LinkContainer  to="/low_dash">
-                                        PaperWork
-                                    </LinkContainer >
+                                  <NavLink>
+                                        Reports
+                                        </NavLink>
                                 </NavItem>
                             </Nav>
                         </Collapse>
