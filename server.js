@@ -1,6 +1,7 @@
 const express = require('express');
 const mongosse = require('mongoose');
 const bodyParser = require('body-parser');
+const config = require("config");
 
 
 //const entries = require('./routes/api/entries');
@@ -9,9 +10,9 @@ const path = require("path")
 
 //app.use(bodyParser.json());
 app.use(express.json())
-//const db = require('./config/keys.js').mongoURI;
+const db = config.get("mongoURI");
 mongosse
-    .connect('mongodb+srv://dev:dev64649@friday.qpgpm.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
+    .connect(db,
         {
             useUnifiedTopology: true,
             useNewUrlParser: true,
@@ -20,8 +21,11 @@ mongosse
     .then(() => console.log('its connected'))
     .catch(err => console.log(err));
 
+
+    //routes to post and wat not
 app.use('/api/entries', require('./routes/api/entries'));
 app.use('/api/user', require('./routes/api/user'));
+app.use('/api/auth', require('./routes/api/auth'));
 
 
 

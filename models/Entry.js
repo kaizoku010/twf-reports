@@ -18,7 +18,8 @@ const EntrySchema = new table(
         
         author: {
             type: String,
-            required: TextTrackCue
+            required: true
+
         },
 
         date: {

@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import Navbar from "./componets/Appsidebar"
 import { Provider } from "react-redux";
 import store from "./store";
+import { loadUser } from "./actions/authActions";
 import { Container } from "reactstrap";
 import {
   BrowserRouter as Router,
@@ -11,10 +12,18 @@ import {
   Link
 } from "react-router-dom";
 import Dashboard from "./componets/dashboard__";
+import { Component } from 'react';
 
-function App() {
+class App extends Component {
+
+  compnenetDidMount() {
+    store.dispatch(loadUser());
+  }
+  
+  render(){
   return (
 
+    
     <Provider store={store}>
       <Router>
         <div className="App">
@@ -38,6 +47,7 @@ function App() {
       </Provider>
  
   );
+}
 }
 
 export default App;

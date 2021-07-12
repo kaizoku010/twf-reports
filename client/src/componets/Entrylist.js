@@ -10,6 +10,14 @@ import { getItems, deleteItem } from "../actions/itemActions";
 import PropTypes from 'prop-types';
 
 class EntryList extends Component {
+
+    static propTypes = {
+        getItems: PropTypes
+            .func.isRequired,
+        item: PropTypes.object.isRequired,
+        isAuthenticated: PropTypes.bool
+    }
+    
     componentDidMount() {
         this.props.getItems();
     }
@@ -29,12 +37,19 @@ class EntryList extends Component {
                                 timeout={300}
                                 classNames="fade">
                                 <ListGroupItem>
-                                <h4>{ title }</h4> 
+                                <h4>{title}</h4> 
                                     <SmartText text={name}/>
                                     <div className="author__holder">
                                         <p className="author">{author}</p>
-                                        <p className="comment">Comment</p>
-                                        <p className="deleteBtn" onClick={this.onDeleteClick.bind(this, _id)}>Delete</p>
+                                        <h5 className="comment">Print</h5>
+
+                                        {this.props.isAuthenticated ?
+                                            <p className="deleteBtn" onClick={
+                                            this.onDeleteClick
+                                                .bind(this,
+                                                    _id)}>Delete
+                                        </p> : null}
+                                       
                                     </div>
                                 </ListGroupItem>
                             </CSSTransition>
@@ -46,15 +61,11 @@ class EntryList extends Component {
     }
 }
 
-EntryList.propTypes = {
-    getItems: PropTypes
-        .func.isRequired,
-    item: PropTypes.object.isRequired
-}
 
 
 const mapStateToProps = (state) => ({
-    item: state.item
+    item: state.item,
+    isAuthenticated: state.auth.isAuthenticated
 });
 export default
     connect(mapStateToProps,
